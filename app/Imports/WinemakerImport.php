@@ -2,15 +2,13 @@
 
 namespace App\Imports;
 
-use App\Models\City;
 use App\Models\Country;
-use App\Models\Region;
-use Illuminate\Database\Eloquent\Builder;
+use App\Models\Winemaker;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithUpserts;
 
-class CityImport implements ToModel, WithUpserts, WithHeadingRow
+class WinemakerImport implements ToModel, WithUpserts, WithHeadingRow
 {
     /**
      * @return string|array
@@ -27,24 +25,15 @@ class CityImport implements ToModel, WithUpserts, WithHeadingRow
     */
     public function model(array $row)
     {
-        if (!isset($row['ortschaft'])) {
+        if (!isset($row['winzer'])) {
             return null;
         }
 
-        $region = Region::where('name', '=', trim($row['weinbaugebiet']))
-            ->whereHas('country', function (Builder $query) use ($row) {
-                $query->where('name', '=', trim($row['land']));
-            })
-            ->firstOrFail();
-
         $country = Country::where('name', '=', $row['land'])->firstOrFail();
 
-        $city = new City([
-            'name' => trim($row['ortschaft']),
-            'region_id' => $region->id,
+        return new Winemaker([
+            'name' => trim($row['winzer']),
             'country_id' => $country->id,
         ]);
-
-        return $city;
     }
 }

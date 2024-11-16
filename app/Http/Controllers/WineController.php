@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
+use App\Models\Country;
+use App\Models\Region;
 use App\Models\Wine;
+use App\Models\Winemaker;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class WineController extends Controller
@@ -12,6 +17,11 @@ class WineController extends Controller
      */
     public function index(Request $request)
     {
+        $country = $request->get('country') ?? null;
+        $region = $request->get('region') ?? null;
+        $city = $request->get('city') ?? null;
+        $winemaker = $request->get('winemaker') ?? null;
+
         $sortBy = $request->get('sortBy') ?? 'wine';
         $sortByOrder = $request->get('sortByOrder') ?? 'ASC';
         $sortByConfig = match ($sortBy) {
@@ -25,7 +35,38 @@ class WineController extends Controller
             default => null
         };
 
-        $wines = Wine::with(['category', 'city', 'region', 'country'])->get();
+        $wines = Wine::query();
+        $regions = Region::query();
+        $cities = City::query();
+        $winemakers = Winemaker::query();
+
+        if ($country) {
+            $wines->where('country_id', $country);
+            $regions->where('country_id', $country);
+            $cities->where('country_id', $country);
+            $winemakers->where('country_id', $country);
+        }
+
+        if ($region) {
+            $wines->where('region_id', $region);
+            $cities->where('region_id', $region);
+        }
+
+        if ($city) {
+            $wines->where('city_id', $city);
+        }
+
+        if ($winemaker) {
+            $wines->where('winemaker_id', $winemaker);
+        }
+
+        $wines = $wines->with([
+            'category',
+            'city',
+            'region',
+            'country',
+            'winemaker',
+        ])->get();
 
         if ($sortByConfig) {
             // TODO think of something more generic
@@ -34,7 +75,18 @@ class WineController extends Controller
         }
 
         return view('wine.index', [
+            'countries' => Country::all()->sortBy('name'),
+            'regions' => $regions->get()->sortBy('name'),
+            'cities' => $cities->get()->sortBy('name'),
+            'winemakers' => $winemakers->get()->sortBy('name'),
             'wines' => $wines,
+
+            'filter' => [
+                'country' => $country,
+                'region' => $region,
+                'city' => $city,
+                'winemaker' => $winemaker,
+            ],
             'sortBy' => $sortBy,
             'sortByOrder' => $sortByOrder,
         ]);

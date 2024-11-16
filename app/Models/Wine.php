@@ -9,7 +9,6 @@ class Wine extends Model
 {
     protected $fillable = [
         'name',
-        'winemaker',
         'name',
         'selling_price',
         'purchase_price',
@@ -24,6 +23,7 @@ class Wine extends Model
         'info',
         'maturation',
 
+        'winemaker_id',
         'category_id',
         'city_id',
         'region_id',
@@ -39,6 +39,11 @@ class Wine extends Model
     // {
     //     return $this->belongsTo(Category::class);
     // }
+
+    public function winemaker(): BelongsTo
+    {
+        return $this->belongsTo(Winemaker::class);
+    }
 
     public function city(): BelongsTo
     {

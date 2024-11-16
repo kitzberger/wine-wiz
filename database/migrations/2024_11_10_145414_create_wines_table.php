@@ -53,8 +53,23 @@ return new class extends Migration
             $table->string('name');
             $table->unsignedBigInteger('region_id');
             $table->foreign('region_id')->references('id')->on('regions');
+            $table->unsignedBigInteger('country_id');
+            $table->foreign('country_id')->references('id')->on('countries');
 
-            $table->unique(['name', 'region_id']);
+            $table->unique(['name', 'region_id', 'country_id']);
+        });
+
+        // Winzer
+        Schema::create('winemakers', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+
+            $table->string('name');
+
+            $table->unsignedBigInteger('country_id');
+            $table->foreign('country_id')->references('id')->on('countries');
+
+            $table->unique(['name', 'country_id']);
         });
 
         // Rebsorte
@@ -70,7 +85,6 @@ return new class extends Migration
             $table->timestamps();
 
             $table->string('name'); // Weinbezeichnung
-            $table->string('winemaker'); // Winzer
             $table->string('selling_price')->nullable(); // Preis
             $table->string('purchase_price')->nullable(); // Einkaufspreis
             $table->year('vintage')->nullable(); // Jahrgang
@@ -88,8 +102,11 @@ return new class extends Migration
             #$table->string('Farbe'); // Farbe
             #$table->string('Passt'); // Passt
 
+            $table->unsignedBigInteger('winemaker_id')->nullable();
+            $table->foreign('winemaker_id')->references('id')->on('winemakers'); // Winzer
+
             $table->unsignedBigInteger('country_id')->nullable();
-            $table->foreign('country_id')->references('id')->on('countries'); // Region
+            $table->foreign('country_id')->references('id')->on('countries'); // Country
 
             $table->unsignedBigInteger('region_id')->nullable();
             $table->foreign('region_id')->references('id')->on('regions'); // Region

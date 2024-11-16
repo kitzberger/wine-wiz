@@ -8,17 +8,20 @@ use App\Imports\CountryImport;
 use App\Imports\GrapeImport;
 use App\Imports\RegionImport;
 use App\Imports\WineImport;
+use App\Imports\WinemakerImport;
 use Illuminate\Console\Command;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ImportExcel extends Command
 {
+    private const FILE = 'wines.xlsx';
+
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'app:import-excel';
+    protected $signature = 'app:import-excel {file?}';
 
     /**
      * The console command description.
@@ -32,12 +35,19 @@ class ImportExcel extends Command
      */
     public function handle()
     {
+        $file = $this->argument('file') ?? self::FILE;
+
+        $this->info('Importing file: ' . $file);
+
         // file must be located in storage/app/private/
-        Excel::import(new CategoryImport, 'wines.xlsx');
-        Excel::import(new GrapeImport, 'wines.xlsx');
-        Excel::import(new CountryImport, 'wines.xlsx');
-        Excel::import(new RegionImport, 'wines.xlsx');
-        Excel::import(new CityImport, 'wines.xlsx');
-        Excel::import(new WineImport, 'wines.xlsx');
+        Excel::import(new CategoryImport, $file);
+        Excel::import(new GrapeImport, $file);
+        Excel::import(new CountryImport, $file);
+        Excel::import(new RegionImport, $file);
+        Excel::import(new CityImport, $file);
+        Excel::import(new WinemakerImport, $file);
+        Excel::import(new WineImport, $file);
+
+        $this->info('The import was successful!');
     }
 }

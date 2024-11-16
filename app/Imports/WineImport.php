@@ -8,6 +8,7 @@ use App\Models\Country;
 use App\Models\Grape;
 use App\Models\Region;
 use App\Models\Wine;
+use App\Models\Winemaker;
 use Illuminate\Database\Eloquent\Builder;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -27,6 +28,7 @@ class WineImport implements ToModel, WithHeadingRow
 
         $category = Category::where('name', '=', trim($row['weingattung']))->first();
         $grape = Grape::where('name', '=', trim($row['rebsorte']))->first();
+        $winemaker = Winemaker::where('name', '=', trim($row['winzer']))->first();
         $city = City::where('name', '=', trim($row['ortschaft']))
             ->whereHas('region', function (Builder $query) use ($row) {
                 $query
@@ -55,7 +57,6 @@ class WineImport implements ToModel, WithHeadingRow
 
         $wine = new Wine([
             'name' => $row['weinbezeichnung'],
-            'winemaker' => $row['winzer'] ?: '[UNKNOWN]',
             'selling_price' => $row['preis'],
             'purchase_price' => $row['einkaufspreis'],
             'vintage' => (int)$row['jahrgang'] ?: null,
@@ -69,6 +70,7 @@ class WineImport implements ToModel, WithHeadingRow
             'tannin' => $row['gerbstoff'],
             'info' => $row['zusatzinfos'],
             'maturation' => $row['ausbau'],
+            'winemaker_id' => $winemaker?->id,
             'category_id' => $category->id,
             'grape_id' => $grape?->id,
             'city_id' => $city?->id,
