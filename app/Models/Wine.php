@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Wine extends Model
 {
     protected $fillable = [
-        'name',
         'name',
         'selling_price',
         'purchase_price',
@@ -35,10 +35,11 @@ class Wine extends Model
         return $this->belongsTo(Category::class);
     }
 
-    // public function grapes(): BelongsTo
-    // {
-    //     return $this->belongsTo(Category::class);
-    // }
+    public function grapes(): BelongsToMany
+    {
+        return $this->belongsToMany(Grape::class, 'wine_grape')
+            ->withPivot('percentage');
+    }
 
     public function winemaker(): BelongsTo
     {

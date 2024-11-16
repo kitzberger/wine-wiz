@@ -130,6 +130,7 @@ return new class extends Migration
         Schema::create('wine_grape', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->smallInteger('percentage')->nullable();
             $table->foreignId('wine_id')->constrained()->onDelete('cascade');
             $table->foreignId('grape_id')->constrained()->onDelete('cascade');
         });

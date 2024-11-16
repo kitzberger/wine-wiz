@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use App\Models\Country;
+use App\Models\Grape;
 use App\Models\Region;
 use App\Models\Wine;
 use App\Models\Winemaker;
@@ -21,6 +22,7 @@ class WineController extends Controller
         $region = $request->get('region') ?? null;
         $city = $request->get('city') ?? null;
         $winemaker = $request->get('winemaker') ?? null;
+        $grape = $request->get('grape') ?? null;
 
         $sortBy = $request->get('sortBy') ?? 'wine';
         $sortByOrder = $request->get('sortByOrder') ?? 'ASC';
@@ -60,12 +62,19 @@ class WineController extends Controller
             $wines->where('winemaker_id', $winemaker);
         }
 
+        if ($grape) {
+            $wines->whereHas('grapes', function ($query) use ($grape) {
+                $query->where('grape_id', $grape);
+            });
+        }
+
         $wines = $wines->with([
             'category',
             'city',
             'region',
             'country',
             'winemaker',
+            'grapes',
         ])->get();
 
         if ($sortByConfig) {
@@ -80,12 +89,14 @@ class WineController extends Controller
             'cities' => $cities->get()->sortBy('name'),
             'winemakers' => $winemakers->get()->sortBy('name'),
             'wines' => $wines,
+            'grapes' => Grape::all()->sortBy('name'),
 
             'filter' => [
                 'country' => $country,
                 'region' => $region,
                 'city' => $city,
                 'winemaker' => $winemaker,
+                'grape' => $grape,
             ],
             'sortBy' => $sortBy,
             'sortByOrder' => $sortByOrder,

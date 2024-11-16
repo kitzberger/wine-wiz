@@ -53,6 +53,17 @@
                             </select>
                         </div>
                     </div>
+                    <div>
+                        <label for="grape" class="block">{{ count($grapes) }} grapes</label>
+                        <div class="mb-2">
+                            <select name="grape" id="grape" class="block" onchange="this.form.submit()" {{ count($grapes) < 2 ? 'disabled' : '' }}>
+                                <x-null-option :count="$grapes->count()" />
+                                @foreach ($grapes as $grape)
+                                    <option value="{{ $grape->id }}" {{ $filter['grape']==$grape->id ? 'selected' : '' }}>{{ $grape->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
@@ -70,12 +81,11 @@
                                 </a>
                             </th>
                         @endforeach
-          {{--               @foreach (['bottle_size', 'alcohol', 'sugar', 'acidity', 'quality',
-                                   'tannin', 'maturation', 'flavours'] as $property)
+                        @foreach (['grapes'] as $property)
                             <th class="py-3 px-4 bg-gray-200 font-semibold text-gray-700 text-left uppercase text-sm">
                                 {{ $property }}
                             </th>
-                        @endforeach --}}
+                        @endforeach
                     </tr>
                 </thead>
                 <tbody>
@@ -88,6 +98,12 @@
                         <td class="py-3 px-4 text-gray-700">{{ $wine->region?->name }}</td>
                         <td class="py-3 px-4 text-gray-700">{{ $wine->country?->name }}</td>
                         <td class="py-3 px-4 text-gray-700">{{ $wine->vintage }}</td>
+                        <td class="py-3 px-4 text-gray-700">
+                            @foreach ($wine->grapes as $grape)
+                                {{ $grape->pivot->percentage ? $grape->pivot->percentage . '%' : '' }}
+                                {{ $grape->name }}<br>
+                            @endforeach
+                        </td>
 {{--                         <td class="py-3 px-4 text-gray-700">{{ $wine->bottle_size }}</td>
                         <td class="py-3 px-4 text-gray-700">{{ $wine->alcohol }}</td>
                         <td class="py-3 px-4 text-gray-700">{{ $wine->sugar }}</td>

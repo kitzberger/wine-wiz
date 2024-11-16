@@ -28,8 +28,19 @@ class GrapeImport implements ToModel, WithUpserts, WithHeadingRow
             return null;
         }
 
-        return new Grape([
-            'name' => trim($row['rebsorte']),
-        ]);
+        $grapes = [];
+
+        foreach (explode(',', $row['rebsorte']) as $grape) {
+            // remove any whitespaces
+            $name = trim($grape);
+            // remove any percentage from name
+            $name = preg_replace('/(\d+)%\s+/', '', $name);
+
+            $grapes[] = new Grape([
+                'name' => $name,
+            ]);
+        }
+
+        return $grapes;
     }
 }

@@ -10,24 +10,22 @@ use App\Models\Region;
 use App\Models\Wine;
 use App\Models\Winemaker;
 use Illuminate\Database\Eloquent\Builder;
-use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\OnEachRow;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Row;
 
-class WineImport implements ToModel, WithHeadingRow
+class WineImport implements OnEachRow, WithHeadingRow
 {
-    /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
-    public function model(array $row)
+    public function onRow(Row $row)
     {
+        $rowIndex = $row->getIndex();
+        $row      = $row->toArray();
+
         if (!isset($row['weinbezeichnung'])) {
             return null;
         }
 
         $category = Category::where('name', '=', trim($row['weingattung']))->first();
-        $grape = Grape::where('name', '=', trim($row['rebsorte']))->first();
         $winemaker = Winemaker::where('name', '=', trim($row['winzer']))->first();
         $city = City::where('name', '=', trim($row['ortschaft']))
             ->whereHas('region', function (Builder $query) use ($row) {
@@ -53,7 +51,7 @@ class WineImport implements ToModel, WithHeadingRow
         }
 
         $sugar = (float)$row['susse'];
-        $sweetness = $sugar===0.0 ? $row['susse'] : null;
+        $sweetness = $sugar === 0.0 ? $row['susse'] : null;
 
         $wine = new Wine([
             'name' => $row['weinbezeichnung'],
@@ -72,12 +70,27 @@ class WineImport implements ToModel, WithHeadingRow
             'maturation' => $row['ausbau'],
             'winemaker_id' => $winemaker?->id,
             'category_id' => $category->id,
-            'grape_id' => $grape?->id,
             'city_id' => $city?->id,
             'region_id' => $region?->id,
             'country_id' => $country?->id,
         ]);
 
-        return $wine;
+        // Save directly so we can add MM relation next
+        $wine->save();
+
+        $grapes = collect([]);
+        foreach (explode(',', $row['rebsorte']) as $name) {
+            // remove any whitespaces
+            $name = trim($name);
+            // remove any percentage from name
+            if (preg_match('/^((\d+)%\s)?(.+)$/', $name, $matches)) {
+                $percentage = (int)$matches[1];
+                $name = $matches[3];
+                $grape = Grape::where('name', $name)->first();
+                if ($grape) {
+                    $wine->grapes()->attach($grape->id, ['percentage' => $percentage]);
+                }
+            }
+        }
     }
 }

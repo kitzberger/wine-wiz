@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Grape extends Model
 {
@@ -11,8 +11,9 @@ class Grape extends Model
         'name',
     ];
 
-    public function wines(): HasMany
+    public function wines(): BelongsToMany
     {
-        return $this->hasMany(Wine::class);
+        return $this->belongsToMany(Wine::class, 'wine_grape')
+            ->withPivot('percentage');
     }
 }
