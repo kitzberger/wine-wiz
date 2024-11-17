@@ -105,6 +105,7 @@
                                 {{ $property }}
                             </th>
                         @endforeach
+                        <th class="py-3 px-4 bg-gray-200 dark:bg-gray-900 font-semibold text-gray-700 dark:text-gray-200 text-left uppercase text-sm"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -124,6 +125,11 @@
                                     {{ $grape->name }}
                                 </span><br>
                             @endforeach
+                        </td>
+                        <td>
+                            <a href="{{ route('wine.show', ['wine' => $wine->id ]) }}" class="dark:text-white">
+                                <i class="las la-eye"></i>
+                            </a>
                         </td>
 {{--                         <td class="py-3 px-4 text-gray-700 dark:text-white">{{ $wine->bottle_size }}</td>
                         <td class="py-3 px-4 text-gray-700 dark:text-white">{{ $wine->alcohol }}</td>
