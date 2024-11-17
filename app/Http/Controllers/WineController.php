@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Grape;
@@ -22,6 +23,7 @@ class WineController extends Controller
         $region = $request->get('region') ?? null;
         $city = $request->get('city') ?? null;
         $winemaker = $request->get('winemaker') ?? null;
+        $category = $request->get('category') ?? null;
         $grape = $request->get('grape') ?? null;
 
         $sortBy = $request->get('sortBy') ?? 'wine';
@@ -62,6 +64,10 @@ class WineController extends Controller
             $wines->where('winemaker_id', $winemaker);
         }
 
+        if ($category) {
+            $wines->where('category_id', $category);
+        }
+
         if ($grape) {
             $wines->whereHas('grapes', function ($query) use ($grape) {
                 $query->where('grape_id', $grape);
@@ -89,6 +95,7 @@ class WineController extends Controller
             'cities' => $cities->get()->sortBy('name'),
             'winemakers' => $winemakers->get()->sortBy('name'),
             'wines' => $wines,
+            'categories' => Category::all()->sortBy('name'),
             'grapes' => Grape::all()->sortBy('name'),
 
             'filter' => [
@@ -96,6 +103,7 @@ class WineController extends Controller
                 'region' => $region,
                 'city' => $city,
                 'winemaker' => $winemaker,
+                'category' => $category,
                 'grape' => $grape,
             ],
             'sortBy' => $sortBy,

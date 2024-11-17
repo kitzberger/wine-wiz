@@ -54,7 +54,18 @@
                         </div>
                     </div>
                     <div>
-                        <label for="grape" class="block">{{ count($grapes) }} grapes</label>
+                        <label for="category" class="block dark:text-gray-300">{{ count($categories) }} category</label>
+                        <div class="mb-2">
+                            <select name="category" id="category" class="block" onchange="this.form.submit()" {{ count($categories) < 2 ? 'disabled' : '' }}>
+                                <x-null-option :count="$categories->count()" />
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}" {{ $filter['category']==$category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="grape" class="block dark:text-gray-300">{{ count($grapes) }} grapes</label>
                         <div class="mb-2">
                             <select name="grape" id="grape" class="block" onchange="this.form.submit()" {{ count($grapes) < 2 ? 'disabled' : '' }}>
                                 <x-null-option :count="$grapes->count()" />
