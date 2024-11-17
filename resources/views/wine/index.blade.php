@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-300 leading-tight">
             Wine Wiz v0.0.2
         </h2>
     </x-slot>
@@ -10,7 +10,7 @@
             <form>
                 <div class="grid grid-cols-4 gap-x-6 gap-y-8">
                     <div>
-                        <label for="country" class="block">{{ count($countries) }} countries</label>
+                        <label for="country" class="block dark:text-gray-300">{{ count($countries) }} countries</label>
                         <div class="mb-2">
                             <select name="country" id="country" class="block" onchange="document.getElementById('region').value = '';document.getElementById('city').value = '';document.getElementById('winemaker').value = '';this.form.submit()">
                                 <option></option>
@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div>
-                        <label for="region" class="block">{{ count($regions) }} regions</label>
+                        <label for="region" class="block dark:text-gray-300">{{ count($regions) }} regions</label>
                         <div class="mb-2">
                             <select name="region" id="region" class="block" onchange="document.getElementById('city').value = '';document.getElementById('winemaker').value = '';this.form.submit()" {{ count($regions) < 2 ? 'disabled' : '' }}>
                                 <x-null-option :count="$regions->count()" />
@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <div>
-                        <label for="city" class="block">{{ count($cities) }} cities</label>
+                        <label for="city" class="block dark:text-gray-300">{{ count($cities) }} cities</label>
                         <div class="mb-2">
                             <select name="city" id="city" class="block" onchange="document.getElementById('winemaker').value = '';this.form.submit()" {{ count($cities) < 2 ? 'disabled' : '' }}>
                                 <x-null-option :count="$cities->count()" />
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <div>
-                        <label for="winemaker" class="block">{{ count($winemakers) }} winemakers</label>
+                        <label for="winemaker" class="block dark:text-gray-300">{{ count($winemakers) }} winemakers</label>
                         <div class="mb-2">
                             <select name="winemaker" id="winemaker" class="block" onchange="this.form.submit()" {{ count($winemakers) < 2 ? 'disabled' : '' }}>
                                 <x-null-option :count="$winemakers->count()" />
@@ -80,12 +80,20 @@
         </div>
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <p>{{ $wines->count() }} wines found.</p>
-            <table class="min-w-full bg-white border border-gray-200">
+            @if($wines->count() === 0)
+                <div class="p-4 mt-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300" role="alert">
+                    No wines found ;-(
+                </div>
+            @else
+                <div class="p-4 mt-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
+                    {{ $wines->count() }} wines found.
+                </div>
+            @endif
+            <table class="min-w-full bg-white dark:bg-gray-800 dark:text-gray-800 border border-gray-200 dark:border-gray-900">
                 <thead>
                     <tr>
                         @foreach (['category', 'wine', 'winemaker', 'city', 'region', 'country', 'vintage'] as $property)
-                            <th class="py-3 px-4 bg-gray-200 font-semibold text-gray-700 text-left uppercase text-sm">
+                            <th class="py-3 px-4 bg-gray-200 dark:bg-gray-900 font-semibold text-gray-700 dark:text-gray-200 text-left uppercase text-sm">
                                 <a href="{{ route('wine.index', ['sortBy' => $property, 'sortByOrder' => $sortByOrder==='DESC'?'ASC':'DESC']) }}">
                                     {{ $property }}
                                     @if($sortBy===$property)<i class="las la-sort-alpha-{{ $sortByOrder==='ASC' ? 'down' : 'up' }}"></i>@endif
@@ -93,7 +101,7 @@
                             </th>
                         @endforeach
                         @foreach (['grapes'] as $property)
-                            <th class="py-3 px-4 bg-gray-200 font-semibold text-gray-700 text-left uppercase text-sm">
+                            <th class="py-3 px-4 bg-gray-200 dark:bg-gray-900 font-semibold text-gray-700 dark:text-gray-200 text-left uppercase text-sm">
                                 {{ $property }}
                             </th>
                         @endforeach
@@ -101,27 +109,29 @@
                 </thead>
                 <tbody>
                     @foreach($wines as $wine)
-                    <tr class="bg-white even:bg-gray-100">
-                        <td class="py-3 px-4 text-gray-700">{{ $wine->category->name }}</td>
-                        <td class="py-3 px-4 text-gray-700">{{ $wine->name }}</td>
-                        <td class="py-3 px-4 text-gray-700">{{ $wine->winemaker?->name }}</td>
-                        <td class="py-3 px-4 text-gray-700">{{ $wine->city?->name }}</td>
-                        <td class="py-3 px-4 text-gray-700">{{ $wine->region?->name }}</td>
-                        <td class="py-3 px-4 text-gray-700">{{ $wine->country?->name }}</td>
-                        <td class="py-3 px-4 text-gray-700">{{ $wine->vintage }}</td>
-                        <td class="py-3 px-4 text-gray-700">
+                    <tr class="bg-white even:bg-gray-100 dark:bg-gray-700 dark:even:bg-gray-500">
+                        <td class="py-3 px-4 text-gray-700 dark:text-white">{{ $wine->category->name }}</td>
+                        <td class="py-3 px-4 text-gray-700 dark:text-white">{{ $wine->name }}</td>
+                        <td class="py-3 px-4 text-gray-700 dark:text-white">{{ $wine->winemaker?->name }}</td>
+                        <td class="py-3 px-4 text-gray-700 dark:text-white">{{ $wine->city?->name }}</td>
+                        <td class="py-3 px-4 text-gray-700 dark:text-white">{{ $wine->region?->name }}</td>
+                        <td class="py-3 px-4 text-gray-700 dark:text-white">{{ $wine->country?->name }}</td>
+                        <td class="py-3 px-4 text-gray-700 dark:text-white">{{ $wine->vintage }}</td>
+                        <td class="py-3 px-4 text-gray-700 dark:text-white">
                             @foreach ($wine->grapes as $grape)
-                                {{ $grape->pivot->percentage ? $grape->pivot->percentage . '%' : '' }}
-                                {{ $grape->name }}<br>
+                                <span style="white-space: nowrap;">
+                                    {{ $grape->pivot->percentage ? $grape->pivot->percentage . '%' : '' }}
+                                    {{ $grape->name }}
+                                </span><br>
                             @endforeach
                         </td>
-{{--                         <td class="py-3 px-4 text-gray-700">{{ $wine->bottle_size }}</td>
-                        <td class="py-3 px-4 text-gray-700">{{ $wine->alcohol }}</td>
-                        <td class="py-3 px-4 text-gray-700">{{ $wine->sugar }}</td>
-                        <td class="py-3 px-4 text-gray-700">{{ $wine->acidity }}</td>
-                        <td class="py-3 px-4 text-gray-700">{{ $wine->quality }}</td>
-                        <td class="py-3 px-4 text-gray-700">{{ $wine->tannin }}</td>
-                        <td class="py-3 px-4 text-gray-700">{{ $wine->maturation }}</td> --}}
+{{--                         <td class="py-3 px-4 text-gray-700 dark:text-white">{{ $wine->bottle_size }}</td>
+                        <td class="py-3 px-4 text-gray-700 dark:text-white">{{ $wine->alcohol }}</td>
+                        <td class="py-3 px-4 text-gray-700 dark:text-white">{{ $wine->sugar }}</td>
+                        <td class="py-3 px-4 text-gray-700 dark:text-white">{{ $wine->acidity }}</td>
+                        <td class="py-3 px-4 text-gray-700 dark:text-white">{{ $wine->quality }}</td>
+                        <td class="py-3 px-4 text-gray-700 dark:text-white">{{ $wine->tannin }}</td>
+                        <td class="py-3 px-4 text-gray-700 dark:text-white">{{ $wine->maturation }}</td> --}}
                     </tr>
                     @endforeach
                 </tbody>
