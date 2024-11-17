@@ -86,7 +86,7 @@
                 </div>
             @else
                 <div class="p-4 mt-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
-                    {{ $wines->count() }} wines found.
+                    {{ $wines->count() . ' ' . \Illuminate\Support\Str::of('wine')->plural($wines->count()) }} found.
                 </div>
             @endif
             <table class="min-w-full bg-white dark:bg-gray-800 dark:text-gray-800 border border-gray-200 dark:border-gray-900">
