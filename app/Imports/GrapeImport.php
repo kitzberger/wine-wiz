@@ -34,7 +34,9 @@ class GrapeImport implements ToModel, WithUpserts, WithHeadingRow
             // remove any whitespaces
             $name = trim($grape);
             // remove any percentage from name
-            $name = preg_replace('/(\d+)%\s+/', '', $name);
+            $name = preg_replace('/(\d+)%/', '', $name);
+
+            $name = trim($name);
 
             $grapes[] = new Grape([
                 'name' => $name,
