@@ -41,6 +41,10 @@
                     <td class="py-3 px-4 text-gray-700 dark:text-white">{{ $wine->category?->name }}</td>
                 </tr>
                 <tr class="bg-white even:bg-gray-100 dark:bg-gray-700 dark:even:bg-gray-500">
+                    <th class="py-3 px-4 text-gray-700 dark:text-white">{{ __('app.wine.style') }}</th>
+                    <td class="py-3 px-4 text-gray-700 dark:text-white">{{ $wine->style ? __('app.wine.style.' . $wine->style) : '-' }}</td>
+                </tr>
+                <tr class="bg-white even:bg-gray-100 dark:bg-gray-700 dark:even:bg-gray-500">
                     <th class="py-3 px-4 text-gray-700 dark:text-white">{{ __('app.wine.grapes') }}</th>
                     <td class="py-3 px-4 text-gray-700 dark:text-white">
                         @foreach ($wine->grapes as $grape)

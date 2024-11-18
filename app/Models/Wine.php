@@ -22,6 +22,7 @@ class Wine extends Model
         'tannin',
         'info',
         'maturation',
+        'style',
 
         'winemaker_id',
         'category_id',

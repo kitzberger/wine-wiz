@@ -68,6 +68,7 @@ class WineImport implements OnEachRow, WithHeadingRow
             'tannin' => $row['gerbstoff'],
             'info' => $row['zusatzinfos'],
             'maturation' => $row['ausbau'],
+            'style' => $row['weinstil'],
             'winemaker_id' => $winemaker?->id,
             'category_id' => $category->id,
             'city_id' => $city?->id,

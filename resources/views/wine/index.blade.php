@@ -65,6 +65,17 @@
                         </div>
                     </div>
                     <div>
+                        <label for="style" class="block dark:text-gray-300">{{ count($styles) }} {{ trans_choice('app.styles', count($styles)) }}</label>
+                        <div class="mb-2">
+                            <select name="style" id="style" class="block" onchange="this.form.submit()" {{ count($styles) < 2 ? 'disabled' : '' }}>
+                                <x-null-option :count="$styles->count()" />
+                                @foreach ($styles as $style)
+                                    <option value="{{ $style }}" {{ $filter['style']==$style ? 'selected' : '' }}>{{ __('app.wine.style.' . $style) }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div>
                         <label for="grape" class="block dark:text-gray-300">{{ count($grapes) }} {{ trans_choice('app.grapes', count($grapes)) }}</label>
                         <div class="mb-2">
                             <select name="grape" id="grape" class="block" onchange="this.form.submit()" {{ count($grapes) < 2 ? 'disabled' : '' }}>

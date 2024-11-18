@@ -24,6 +24,7 @@ class WineController extends Controller
         $city = $request->get('city') ?? null;
         $winemaker = $request->get('winemaker') ?? null;
         $category = $request->get('category') ?? null;
+        $style = $request->get('style') ?? null;
         $grape = $request->get('grape') ?? null;
 
         $sortBy = $request->get('sortBy') ?? 'wine';
@@ -68,6 +69,10 @@ class WineController extends Controller
             $wines->where('category_id', $category);
         }
 
+        if ($style) {
+            $wines->where('style', $style);
+        }
+
         if ($grape) {
             $wines->whereHas('grapes', function ($query) use ($grape) {
                 $query->where('grape_id', $grape);
@@ -96,6 +101,7 @@ class WineController extends Controller
             'winemakers' => $winemakers->get()->sortBy('name'),
             'wines' => $wines,
             'categories' => Category::all()->sortBy('name'),
+            'styles' => collect([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
             'grapes' => Grape::all()->sortBy('name'),
 
             'filter' => [
@@ -104,6 +110,7 @@ class WineController extends Controller
                 'city' => $city,
                 'winemaker' => $winemaker,
                 'category' => $category,
+                'style' => $style,
                 'grape' => $grape,
             ],
             'sortBy' => $sortBy,

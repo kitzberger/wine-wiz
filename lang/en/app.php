@@ -9,6 +9,7 @@ return [
     'cities' => 'city|cities',
     'winemakers' => 'winemaker|winemakers',
     'categories' => 'category|categories',
+    'styles' => 'style|styles',
     'grapes' => 'grape|grapes',
 
     'wine.id' => 'ID',
@@ -34,4 +35,17 @@ return [
     'wine.tannin' => 'Tannin',
     'wine.maturation' => 'Maturation',
 
+    'wine.style' => 'Style',
+    'wine.style.1' => 'Leichte, knackige Weißweine',
+    'wine.style.2' => 'Saftig, aromatische Weißweine',
+    'wine.style.3' => 'Körperreiche, opulente Weißweine',
+    'wine.style.4' => 'Frische, fruchtige Rotweine',
+    'wine.style.5' => 'Reife, weiche Rotweine',
+    'wine.style.6' => 'Schwere, mächtige Rotweine',
+    'wine.style.7' => 'Schaumwein: Frisch, Fruchtig',
+    'wine.style.8' => 'Schaumwein: Brioche, gereift',
+    'wine.style.9' => 'Schaumwein: Tief fruchtig',
+    'wine.style.10' => 'Süßwein: rot',
+    'wine.style.11' => 'Süßwein: weiß',
+    'wine.style.12' => 'Alkoholfrei',
 ];

@@ -98,7 +98,7 @@ return new class extends Migration
             $table->string('tannin')->nullable(); // Gerbstoff
             $table->string('maturation')->nullable(); // Ausbau
             $table->text('info')->nullable(); // Zusatzinfos
-            #$table->string('Weinstil'); // Weinstil
+            $table->integer('style')->nullable(); // Weinstil
             #$table->string('Farbe'); // Farbe
             #$table->string('Passt'); // Passt
 
