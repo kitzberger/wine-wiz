@@ -8,8 +8,10 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', [WineController::class, 'index'])->name('wine.index');
+Route::view('/', 'welcome')->name('root');
+Route::get('/wine-list', [WineController::class, 'index'])->name('wine.index');
 Route::get('/wine/{wine}', [WineController::class, 'show'])->name('wine.show');
+Route::get('/wizard', [WineController::class, 'wizard'])->name('wine.wizard');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

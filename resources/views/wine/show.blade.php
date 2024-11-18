@@ -1,9 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-300 leading-tight">
-            Wine Wiz: {{ $wine?->name ?? '???' }}
+            <a href="{{ route('root') }}">{{ __('Wine Wiz') }}</a>: {{ $wine?->name ?? '???' }}
         </h2>
-        <span class="text-gray-400 dark:text-gray-600">v0.0.3</span>
     </x-slot>
 
     <div class="py-12">

@@ -111,6 +111,12 @@ class WineController extends Controller
         ]);
     }
 
+    public function wizard()
+    {
+        return view('wine.wizard', [
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
