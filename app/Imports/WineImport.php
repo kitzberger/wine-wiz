@@ -83,7 +83,7 @@ class WineImport implements OnEachRow, WithHeadingRow
             // remove any whitespaces
             $name = trim($name);
             // remove any percentage from name
-            if (preg_match('/^((\d+)%)?(.+)$/', $name, $matches)) {
+            if (preg_match('/^((\d+)\s*%)?(.+)$/', $name, $matches)) {
                 $percentage = (int)$matches[1];
                 $name = trim($matches[3]);
                 $grape = Grape::where('name', $name)->first();
