@@ -1,23 +1,41 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-300 leading-tight">
+        <h2 class="">
             <a href="{{ route('root') }}">{{ __('Wine Wiz') }}</a>
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <h3 class="font-semibold text-xl">{{ __("Welcome to the Wine Wiz!") }}</h3>
-                    <p class="mt-2 mb-2">
-                        {{ __('Who are you?') }}
-                    </p>
-                    <ul class="list-inside list-disc">
-                        <li><a class="text-orange-700 hover:text-orange-500" href="{{ route('wine.wizard') }}">{{ __('Amateur') }}</a></li>
-                        <li><a class="text-orange-700 hover:text-orange-500" href="{{ route('wine.wizard') }}">{{ __('Advanced') }}</a></li>
-                        <li><a class="text-orange-700 hover:text-orange-500" href="{{ route('wine.index') }}">{{ __('Expert') }}</a></li>
-                    </ul>
+    <div class="mt-4">
+        <h3 class="font-semibold text-xl">{{ __("Welcome to the Wine Wiz!") }}</h3>
+        <p class="mt-2 mb-2">
+            {{ __('Who are you?') }}
+        </p>
+        <div class="row">
+            <div class="col col-md-4">
+                <div class="card text-bg-default mb-3">
+                    <div class="card-header">{{ __('Amateur') }}</div>
+                    <div class="card-body">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a class="btn btn-primary" href="{{ route('wine.wizard') }}">{{ __('Amateur') }}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-md-4">
+                <div class="card text-bg-default mb-3">
+                    <div class="card-header">{{ __('Advanced') }}</div>
+                    <div class="card-body">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a class="btn btn-secondary" href="{{ route('wine.wizard') }}">{{ __('Advanced') }}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-md-4">
+                <div class="card text-bg-default mb-3">
+                    <div class="card-header">{{ __('Expert') }}</div>
+                    <div class="card-body">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a class="btn btn-danger" href="{{ route('wine.index') }}">{{ __('Expert') }}</a>
+                    </div>
                 </div>
             </div>
         </div>
