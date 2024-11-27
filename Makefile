@@ -4,6 +4,7 @@ development:
 
 production:
 	composer install --no-dev
+	npm install
 	npm run build
 
 import:
