@@ -50,9 +50,6 @@ class WineImport implements OnEachRow, WithHeadingRow
             $country = $region->country;
         }
 
-        $sugar = (float)$row['susse'];
-        $sweetness = $sugar === 0.0 ? $row['susse'] : null;
-
         $wine = new Wine([
             'name' => $row['weinbezeichnung'],
             'selling_price' => $row['preis'],
@@ -62,10 +59,11 @@ class WineImport implements OnEachRow, WithHeadingRow
             'bottle_size' => (float)$row['gebinde'],
             'alcohol' => (float)$row['alkoholgehalt'],
             'acidity' => (float)$row['saure'],
-            'sugar' => $sugar,
-            'sweetness' => $sweetness,
+            'sugar' => (float)$row['susse'],
             'quality' => $row['qualitat'],
-            'tannin' => $row['gerbstoff'],
+            'level_tannin' => $row['gerbstoff_nummer'],
+            'level_sweetness' => $row['susse_nummer'],
+            'level_acidity' => $row['saure_nummer'],
             'info' => $row['zusatzinfos'],
             'maturation' => $row['ausbau'],
             'style' => $row['weinstil'],

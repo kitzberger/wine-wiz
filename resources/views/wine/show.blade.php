@@ -71,28 +71,24 @@
                 <td class="">{{ $wine->alcohol }}</td>
             </tr>
             <tr class="">
-                <th class="">{{ __('app.wine.acidity') }}</th>
-                <td class="">{{ $wine->acidity }}</td>
-            </tr>
-            <tr class="">
-                <th class="">{{ __('app.wine.sugar') }}</th>
-                <td class="">{{ $wine->sugar }}</td>
-            </tr>
-            <tr class="">
-                <th class="">{{ __('app.wine.sweetness') }}</th>
-                <td class="">{{ $wine->sweetness }}</td>
-            </tr>
-            <tr class="">
                 <th class="">{{ __('app.wine.quality') }}</th>
                 <td class="">{{ $wine->quality }}</td>
             </tr>
             <tr class="">
-                <th class="">{{ __('app.wine.tannin') }}</th>
-                <td class="">{{ $wine->tannin }}</td>
-            </tr>
-            <tr class="">
                 <th class="">{{ __('app.wine.maturation') }}</th>
                 <td class="">{{ $wine->maturation }}</td>
+            </tr>
+            <tr class="">
+                <th class="">{{ __('app.wine.tannin') }}</th>
+                <td class="">{{ $wine->level_tannin }}</td>
+            </tr>
+            <tr class="">
+                <th class="">{{ __('app.wine.sweetness') }}</th>
+                <td class="">{{ $wine->level_sweetness }} {{ $wine->sugar ? '(' . $wine->sugar . 'g/l)' : '' }}</td>
+            </tr>
+            <tr class="">
+                <th class="">{{ __('app.wine.acidity') }}</th>
+                <td class="">{{ $wine->level_acidity }} {{ $wine->acidity ? '(' . $wine->acidity . 'g/l)' : '' }}</td>
             </tr>
         </table>
         @endif

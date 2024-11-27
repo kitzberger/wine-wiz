@@ -93,9 +93,10 @@ return new class extends Migration
             $table->float('alcohol')->nullable(); // Alkoholgehalt
             $table->float('acidity')->nullable(); // Säure
             $table->float('sugar')->nullable(); // Süße (in g)
-            $table->string('sweetness')->nullable(); // Süße (in human readable)
             $table->string('quality')->nullable(); // Qualität: Bio, Biodyn, etc.
-            $table->string('tannin')->nullable(); // Gerbstoff
+            $table->integer('level_tannin')->nullable(); // Gerbstoff
+            $table->integer('level_sweetness')->nullable(); // Süße
+            $table->integer('level_acidity')->nullable(); // Säure
             $table->string('maturation')->nullable(); // Ausbau
             $table->text('info')->nullable(); // Zusatzinfos
             $table->integer('style')->nullable(); // Weinstil

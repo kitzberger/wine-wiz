@@ -32,8 +32,8 @@ return [
     'wine.sugar' => 'Sugar',
     'wine.sweetness' => 'Sweetness',
     'wine.quality' => 'Quality',
-    'wine.tannin' => 'Tannin',
     'wine.maturation' => 'Maturation',
+    'wine.tannin' => 'Tannin',
 
     'wine.style' => 'Style',
     'wine.style.1' => 'Leichte, knackige Weißweine',
