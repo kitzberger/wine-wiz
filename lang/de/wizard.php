@@ -55,7 +55,7 @@ return [
                 'description' => 'Leidenschaftlich und kraftvoll, voller Feuer und Intensität.',
             ],
             'plum' => [
-                'title' => 'Plaumig',
+                'title' => 'Pflaumig',
                 'description' => 'Tief und geheimnisvoll, ein Hauch von Eleganz und Sinnlichkeit.',
             ],
             'purple' => [
