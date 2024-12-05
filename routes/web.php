@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::view('/', 'welcome')->name('root');
+Route::view('/about', 'about')->name('about');
 Route::get('/wine-list', [WineController::class, 'index'])->name('wine.index');
 Route::get('/wine/{wine}', [WineController::class, 'show'])->name('wine.show');
 Route::get('/wizard', [WineController::class, 'wizard'])->name('wine.wizard');

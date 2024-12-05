@@ -22,18 +22,24 @@
                         <a href="{{ route('root') }}" class="text-default">{{ __('Wine Wiz') }}</a>
                     </div>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                          <ul class="navbar-nav">
                             <li class="nav-item">
-                              <a class="nav-link" href="{{ route('wine.wizard') }}">Wizard</a>
+                                <a class="nav-link {{ Route::is('wine.wizard') ? 'active' : '' }}" href="{{ route('wine.wizard') }}">
+                                    {{ __('app.nav.wizard') }}
+                                </a>
                             </li>
                             <li class="nav-item">
-                              <a class="nav-link" href="{{ route('wine.index') }}">List</a>
+                                <a class="nav-link {{ Route::is('wine.index') ? 'active' : '' }}" href="{{ route('wine.index') }}">
+                                    {{ __('app.nav.list') }}
+                                </a>
                             </li>
                             <li class="nav-item">
-                              <a class="nav-link" href="#">About</a>
+                                <a class="nav-link {{ Route::is('about') ? 'active' : '' }}" href="{{ route('about') }}">
+                                    {{ __('app.nav.about') }}
+                                </a>
                             </li>
                         </ul>
                     </div>

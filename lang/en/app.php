@@ -1,6 +1,16 @@
 <?php
 
 return [
+    'nav.wizard' => 'Wizard',
+    'nav.list' => 'List',
+    'nav.about' => 'About',
+
+    'welcome-to-wine-wiz' => 'Welcome to the Wine Wiz!',
+    'who-are-you' => 'Which one are you?',
+    'who-are-you.amateur' => 'Amateur',
+    'who-are-you.advanced' => 'Advanced',
+    'who-are-you.expert' => 'Expert',
+
     'list.no-results' => 'No wines found ;-(',
     'list.x-results' => '1 wine found.|:count wines found.',
 
@@ -36,16 +46,19 @@ return [
     'wine.tannin' => 'Tannin',
 
     'wine.style' => 'Style',
-    'wine.style.1' => 'Leichte, knackige Weißweine',
-    'wine.style.2' => 'Saftig, aromatische Weißweine',
-    'wine.style.3' => 'Körperreiche, opulente Weißweine',
-    'wine.style.4' => 'Frische, fruchtige Rotweine',
-    'wine.style.5' => 'Reife, weiche Rotweine',
-    'wine.style.6' => 'Schwere, mächtige Rotweine',
-    'wine.style.7' => 'Schaumwein: Frisch, Fruchtig',
-    'wine.style.8' => 'Schaumwein: Brioche, gereift',
-    'wine.style.9' => 'Schaumwein: Tief fruchtig',
-    'wine.style.10' => 'Süßwein: rot',
-    'wine.style.11' => 'Süßwein: weiß',
-    'wine.style.12' => 'Alkoholfrei',
+    'wine.style.1' => 'Light, crisp white wines',
+    'wine.style.2' => 'Juicy, aromatic white wines',
+    'wine.style.3' => 'Full-bodied, opulent white wines',
+    'wine.style.4' => 'Fresh, fruity red wines',
+    'wine.style.5' => 'Mature, smooth red wines',
+    'wine.style.6' => 'Heavy, powerful red wines',
+    'wine.style.7' => 'Sparkling wine: Fresh, fruity',
+    'wine.style.8' => 'Sparkling wine: Brioche, aged',
+    'wine.style.9' => 'Sparkling wine: Deep fruity',
+    'wine.style.10' => 'Sweet wine: red',
+    'wine.style.11' => 'Sweet wine: white',
+    'wine.style.12' => 'Non-alcoholic',
+
+    'marketing_headline' => 'About Wine Wiz',
+    'marketing' => 'Our web application helps you find the perfect wine for any occasion – personalized and hassle-free. With just a few clicks, you can share your preferences, whether you\'re looking for a refreshing wine, a meal companion, or a refined choice to end the day. Select flavor profiles like citrus or melon, indicate your level of wine knowledge, and receive tailored recommendations. Whether the wine is for yourself or a gift, our platform takes your needs and occasions into account. With a user-friendly interface and a wide selection of wines, you\'ll quickly discover what suits you best. Additional details about wineries, grape varieties, and reviews make your decision even easier. Enjoy on-demand wine advice – personalized, informative, and designed just for you.',
 ];
