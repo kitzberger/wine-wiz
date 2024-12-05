@@ -118,10 +118,40 @@ class WineController extends Controller
         ]);
     }
 
-    public function wizard()
+    public function wizard(Request $request)
     {
+        $level = $request->get('level') ?? null;
+        $occasion = $request->get('occasion') ?? null;
+        $color = $request->get('color') ?? null;
+        $acidity = $request->get('acidity') ?? null;
+        $maturation = $request->get('maturation') ?? null;
+
+        $options = $this->loadOptions();
+
+        $filter = [
+            'level' => $level,
+            'occasion' => $occasion,
+            'color' => $color,
+            'acidity' => $acidity,
+            'maturation' => $maturation,
+        ];
+
+        if (count(array_filter($filter)) === 5) {
+            $wines = Wine::query();
+            $wines = $wines->limit(5)->get();
+        }
+
+
         return view('wine.wizard', [
+            'wines' => $wines ?? [],
+            'options' => $options,
+            'filter' => $filter,
         ]);
+    }
+
+    private function loadOptions(): array
+    {
+        return __('wizard');
     }
 
     /**

@@ -1,1 +1,48 @@
-@import "node_modules/bootstrap/scss/bootstrap";
+/* Bootstrap is loaded via js */
+
+$green: #70ad47;
+$yellow: #ffd966;
+$orange: #ed7d31;
+$red: #ff0000;
+$plum: #c00000;
+$purple: #7030a0;
+
+.alert {
+    &.alert-default {
+        --bs-alert-bg: #f2f2f2;
+        --bs-alert-border-color: #d2d2d2;
+    }
+}
+
+.card {
+    &.card-color-green {
+        border-color: $green;
+        .card-header { background: $green; }
+        .btn-primary { background: $green; border-color: $green; }
+    }
+    &.card-color-yellow {
+        border-color: $yellow;
+        .card-header { background: $yellow; }
+        .btn-primary { background: $yellow; border-color: $yellow; color: var(--bs-card-color); }
+    }
+    &.card-color-orange {
+        border-color: $orange;
+        .card-header { background: $orange; }
+        .btn-primary { background: $orange; border-color: $orange; }
+    }
+    &.card-color-red {
+        border-color: $red;
+        .card-header { background: $red; color: var(--bs-light); }
+        .btn-primary { background: $red; border-color: $red; color: var(--bs-btn-color); }
+    }
+    &.card-color-plum {
+        border-color: $plum;
+        .card-header { background: $plum; color: var(--bs-light); }
+        .btn-primary { background: $plum; border-color: $plum; color: var(--bs-btn-color); }
+    }
+    &.card-color-purple {
+        border-color: $purple;
+        .card-header { background: $purple; color: var(--bs-light); }
+        .btn-primary { background: $purple; border-color: $purple; color: var(--bs-btn-color); }
+    }
+}

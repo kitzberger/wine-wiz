@@ -16,7 +16,7 @@
                     <div class="card-header">{{ __('Amateur') }}</div>
                     <div class="card-body">
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a class="btn btn-primary" href="{{ route('wine.wizard') }}">{{ __('Amateur') }}</a>
+                        <a class="btn btn-primary" href="{{ route('wine.wizard', ['level' => 'amateur']) }}">{{ __('Amateur') }}</a>
                     </div>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                     <div class="card-header">{{ __('Advanced') }}</div>
                     <div class="card-body">
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a class="btn btn-secondary" href="{{ route('wine.wizard') }}">{{ __('Advanced') }}</a>
+                        <a class="btn btn-secondary" href="{{ route('wine.wizard', ['level' => 'advanced']) }}">{{ __('Advanced') }}</a>
                     </div>
                 </div>
             </div>
