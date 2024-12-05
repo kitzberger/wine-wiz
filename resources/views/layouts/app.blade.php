@@ -43,7 +43,7 @@
                             </li>
                         </ul>
                     </div>
-                    <span class="text-muted">v0.0.4</span>
+                    <span class="text-muted">v0.0.5</span>
                 </div>
             </nav>
         @endisset
