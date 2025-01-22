@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Imports\CategoryImport;
 use App\Imports\CityImport;
 use App\Imports\CountryImport;
+use App\Imports\FoodImport;
 use App\Imports\GrapeImport;
 use App\Imports\RegionImport;
 use App\Imports\WineImport;
@@ -47,6 +48,7 @@ class ImportExcel extends Command
         Excel::import(new CityImport, $file);
         Excel::import(new WinemakerImport, $file);
         Excel::import(new WineImport, $file);
+        Excel::import(new FoodImport, $file);
 
         $this->info('The import was successful!');
     }

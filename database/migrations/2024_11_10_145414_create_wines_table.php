@@ -11,6 +11,29 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Style
+        Schema::create('styles', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+
+            $table->string('name')->unique();
+        });
+
+        DB::table('styles')->insert([
+            ['id' => 1, 'name' => 'Leichte, knackige Weißweine'],
+            ['id' => 2, 'name' => 'Saftig, aromatische Weißweine'],
+            ['id' => 3, 'name' => 'Körperreiche, opulente Weißweine'],
+            ['id' => 4, 'name' => 'Frische, fruchtige Rotweine'],
+            ['id' => 5, 'name' => 'Reife, weiche Rotweine'],
+            ['id' => 6, 'name' => 'Schwere, mächtige Rotweine'],
+            ['id' => 7, 'name' => 'Schaumwein: Frisch, Fruchtig'],
+            ['id' => 8, 'name' => 'Schaumwein: Brioche, gereift'],
+            ['id' => 9, 'name' => 'Schaumwein: Tief fruchtig'],
+            ['id' => 10, 'name' => 'Süßwein: rot'],
+            ['id' => 11, 'name' => 'Süßwein: weiß'],
+            ['id' => 12, 'name' => 'Alkoholfrei'],
+        ]);
+
         Schema::create('flavours', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
@@ -85,8 +108,8 @@ return new class extends Migration
             $table->timestamps();
 
             $table->string('name'); // Weinbezeichnung
-            $table->string('selling_price')->nullable(); // Preis
-            $table->string('purchase_price')->nullable(); // Einkaufspreis
+            $table->float('selling_price')->nullable(); // Preis
+            $table->float('purchase_price')->nullable(); // Einkaufspreis
             $table->year('vintage')->nullable(); // Jahrgang
             $table->string('plu')->nullable(); // PLU
             $table->float('bottle_size'); // Gebinde
@@ -99,7 +122,6 @@ return new class extends Migration
             $table->integer('level_acidity')->nullable(); // Säure
             $table->string('maturation')->nullable(); // Ausbau
             $table->text('info')->nullable(); // Zusatzinfos
-            $table->integer('style')->nullable(); // Weinstil
             #$table->string('Farbe'); // Farbe
             #$table->string('Passt'); // Passt
 
@@ -117,9 +139,12 @@ return new class extends Migration
 
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories'); // Weingattung
+
+            $table->unsignedBigInteger('style_id');
+            $table->foreign('style_id')->references('id')->on('styles'); // Weinstil
         });
 
-        // Aromen
+        // Wein Flavour Relation
         Schema::create('wine_flavour', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
@@ -127,13 +152,31 @@ return new class extends Migration
             $table->foreignId('flavour_id')->constrained()->onDelete('cascade');
         });
 
-        // Aromen
+        // Wein Rebsorte Relation
         Schema::create('wine_grape', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->smallInteger('percentage')->nullable();
             $table->foreignId('wine_id')->constrained()->onDelete('cascade');
             $table->foreignId('grape_id')->constrained()->onDelete('cascade');
+        });
+
+        // Essen
+        Schema::create('food', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+
+            $table->string('name')->unique();
+            $table->float('price');
+            $table->string('type');
+        });
+
+        // Food style relation
+        Schema::create('food_style', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->foreignId('food_id')->constrained()->onDelete('cascade');
+            $table->foreignId('style_id')->constrained()->onDelete('cascade');
         });
     }
 
@@ -151,5 +194,8 @@ return new class extends Migration
         Schema::dropIfExists('regions');
         Schema::dropIfExists('countries');
         Schema::dropIfExists('wines');
+        Schema::dropIfExists('food_style');
+        Schema::dropIfExists('food');
+        Schema::dropIfExists('styles');
     }
 };

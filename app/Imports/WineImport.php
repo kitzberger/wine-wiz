@@ -66,7 +66,7 @@ class WineImport implements OnEachRow, WithHeadingRow
             'level_acidity' => $row['saure_nummer'],
             'info' => $row['zusatzinfos'],
             'maturation' => $row['ausbau'],
-            'style' => $row['weinstil'],
+            'style_id' => (int)$row['weinstil'],
             'winemaker_id' => $winemaker?->id,
             'category_id' => $category->id,
             'city_id' => $city?->id,
@@ -77,7 +77,6 @@ class WineImport implements OnEachRow, WithHeadingRow
         // Save directly so we can add MM relation next
         $wine->save();
 
-        $grapes = collect([]);
         foreach (explode(',', $row['rebsorte']) as $name) {
             // remove any whitespaces
             $name = trim($name);

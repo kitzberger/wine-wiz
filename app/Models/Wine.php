@@ -20,12 +20,12 @@ class Wine extends Model
         'sugar',
         'quality',
         'maturation',
-        'style',
         'info',
         'level_tannin',
         'level_sweetness',
         'level_acidity',
 
+        'style_id',
         'winemaker_id',
         'category_id',
         'city_id',
