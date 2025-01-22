@@ -2,7 +2,8 @@
 
 return [
     'nav.wizard' => 'Wizard',
-    'nav.list' => 'List',
+    'nav.food-list' => 'Foods',
+    'nav.wine-list' => 'Wines',
     'nav.about' => 'About',
 
     'welcome-to-wine-wiz' => 'Welcome to the Wine Wiz!',
@@ -11,8 +12,11 @@ return [
     'who-are-you.advanced' => 'Advanced',
     'who-are-you.expert' => 'Expert',
 
-    'list.no-results' => 'No wines found ;-(',
-    'list.x-results' => '1 wine found.|:count wines found.',
+    'food-list.no-results' => 'No foods found ;-(',
+    'food-list.x-results' => '1 food found.|:count foods found.',
+
+    'wine-list.no-results' => 'No wines found ;-(',
+    'wine-list.x-results' => '1 wine found.|:count wines found.',
 
     'countries' => 'country|countries',
     'regions' => 'region|regions',
@@ -21,6 +25,15 @@ return [
     'categories' => 'category|categories',
     'styles' => 'style|styles',
     'grapes' => 'grape|grapes',
+
+    'food.id' => 'ID',
+    'food.name' => 'Food',
+    'food.type' => 'Type',
+    'food.types' => 'Types',
+    'food.types.starter' => 'Starter',
+    'food.types.maincourse' => 'Main course',
+    'food.types.dessert' => 'Dessert',
+    'food.styles' => 'Styles',
 
     'wine.id' => 'ID',
     'wine.category' => 'Category',

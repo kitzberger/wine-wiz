@@ -33,7 +33,12 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {{ Route::is('wine.index') ? 'active' : '' }}" href="{{ route('wine.index') }}">
-                                    {{ __('app.nav.list') }}
+                                    {{ __('app.nav.wine-list') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ Route::is('food.index') ? 'active' : '' }}" href="{{ route('food.index') }}">
+                                    {{ __('app.nav.food-list') }}
                                 </a>
                             </li>
                             <li class="nav-item">

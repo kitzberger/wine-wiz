@@ -37,7 +37,7 @@
 
         @if(count($wines))
             <div class="alert alert-info" role="alert">
-                {{ trans_choice('app.list.x-results', $wines->count()) }}
+                {{ trans_choice('app.wine-list.x-results', $wines->count()) }}
             </div>
 
             <div class="table-responsive">

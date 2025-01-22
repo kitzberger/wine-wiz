@@ -2,7 +2,8 @@
 
 return [
     'nav.wizard' => 'Wizard',
-    'nav.list' => 'Liste',
+    'nav.food-list' => 'Speisen',
+    'nav.wine-list' => 'Weine',
     'nav.about' => 'Über',
 
     'welcome-to-wine-wiz' => 'Willkommen beim Wine Wiz!',
@@ -11,16 +12,28 @@ return [
     'who-are-you.advanced' => 'Fortgeschritten',
     'who-are-you.expert' => 'Experte',
 
-    'list.no-results' => 'Keine Weine gefunden ;-(',
-    'list.x-results' => '1 Wein gefunden.|:count Weine gefunden.',
+    'food-list.no-results' => 'Keine Speisen gefunden ;-(',
+    'food-list.x-results' => '1 Speise gefunden.|:count Speisen gefunden.',
+
+    'wine-list.no-results' => 'Keine Weine gefunden ;-(',
+    'wine-list.x-results' => '1 Wein gefunden.|:count Weine gefunden.',
 
     'countries' => 'Land|Länder',
     'regions' => 'Region|Regionen',
     'cities' => 'Ort|Orte',
     'winemakers' => 'Winzer|Winzer',
     'categories' => 'Kategorie|Kategorien',
-    'styles' => 'Stil|Stile',
+    'styles' => 'passender Weinstil|passende Weinstile',
     'grapes' => 'Rebsorte|Rebsorten',
+
+    'food.id' => 'ID',
+    'food.name' => 'Speise',
+    'food.type' => 'Art',
+    'food.types' => 'Arten',
+    'food.types.starter' => 'Vorspeise',
+    'food.types.maincourse' => 'Hauptspeise',
+    'food.types.dessert' => 'Nachtisch',
+    'food.styles' => 'Passende Weinstile',
 
     'wine.id' => 'ID',
     'wine.category' => 'Kategorie',

@@ -75,11 +75,11 @@
         <div>
             @if($wines->count() === 0)
                 <div class="alert alert-warning" role="alert">
-                    {{ __('app.list.no-results') }}
+                    {{ __('app.wine-list.no-results') }}
                 </div>
             @else
                 <div class="alert alert-info" role="alert">
-                    {{ trans_choice('app.list.x-results', $wines->count()) }}
+                    {{ trans_choice('app.wine-list.x-results', $wines->count()) }}
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped">
