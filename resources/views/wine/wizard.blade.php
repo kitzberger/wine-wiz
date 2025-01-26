@@ -155,7 +155,7 @@
                                 </th>
                             @endforeach
                             @if(config('app.debugWizard'))
-                                @foreach (['selling_price', 'alcohol', 'level_sweetness', 'level_acidity', 'level_tannin', 'maturation'] as $property)
+                                @foreach (['selling_price', 'alcohol', 'level_sweetness', 'level_acidity', 'level_tannin', 'maturation', 'style'] as $property)
                                 <th class="table-danger">
                                     {{ __('app.wine.' . $property) }}
                                 </th>
@@ -187,6 +187,7 @@
                                 <td class="table-danger">{{ $wine->level_acidity }}</td>
                                 <td class="table-danger">{{ $wine->level_tannin }}</td>
                                 <td class="table-danger">{{ $wine->maturation }}</td>
+                                <td class="table-danger">{{ $wine->style_id }}</td>
                             @endif
                             <td>
                                 <a href="{{ route('wine.show', ['wine' => $wine->id ]) }}" class="dark:text-white">
