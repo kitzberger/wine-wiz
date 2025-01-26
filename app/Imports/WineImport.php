@@ -65,7 +65,11 @@ class WineImport implements OnEachRow, WithHeadingRow
             'level_sweetness' => $row['susse_nummer'],
             'level_acidity' => $row['saure_nummer'],
             'info' => $row['zusatzinfos'],
-            'maturation' => $row['ausbau'],
+            'maturation' => match(trim($row['ausbau'])) {
+                'Holz' => 'wood',
+                'Stahl' => 'steel',
+                default => null,
+            },
             'style_id' => (int)$row['weinstil'],
             'winemaker_id' => $winemaker?->id,
             'category_id' => $category->id,

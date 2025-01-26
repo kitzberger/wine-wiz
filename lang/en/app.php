@@ -58,6 +58,9 @@ return [
     'wine.maturation' => 'Maturation',
     'wine.tannin' => 'Tannin',
 
+    'wine.selling_price' => 'Price',
+    'wine.level_sweetness' => 'Sweetness',
+
     'wine.style' => 'Style',
     'wine.style.1' => 'Light, crisp white wines',
     'wine.style.2' => 'Juicy, aromatic white wines',

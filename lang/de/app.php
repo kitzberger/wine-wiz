@@ -58,6 +58,11 @@ return [
     'wine.maturation' => 'Ausbau',
     'wine.tannin' => 'Tannin',
 
+    'wine.selling_price' => 'Preis',
+    'wine.level_sweetness' => 'Süße',
+    'wine.level_acidity' => 'Säure',
+    'wine.level_tannin' => 'Tannin',
+
     'wine.style' => 'Style',
     'wine.style.1' => 'Leichte, knackige Weißweine',
     'wine.style.2' => 'Saftig, aromatische Weißweine',

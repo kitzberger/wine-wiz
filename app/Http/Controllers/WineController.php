@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Country;
+use App\Models\Food;
 use App\Models\Grape;
 use App\Models\Region;
 use App\Models\Wine;
 use App\Models\Winemaker;
+use Carbon\Carbon;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
@@ -120,10 +122,24 @@ class WineController extends Controller
 
     public function wizard(Request $request)
     {
+        // Question 1
         $level = $request->get('level') ?? null;
+
+        // Question 2
         $occasion = $request->get('occasion') ?? null;
+
+        // Question 3
+        $course = $request->get('course') ?? null;
+        $food = $request->get('food') ?? null;
+
+        // Question 4 (for amateurs)
         $color = $request->get('color') ?? null;
+        // Question 4 (for advanced)
+        $strength = $request->get('strength') ?? null;
+
+        // Question 5+6+7 (only for advanced!)
         $acidity = $request->get('acidity') ?? null;
+        $tannin = $request->get('tannin') ?? null;
         $maturation = $request->get('maturation') ?? null;
 
         $options = $this->loadOptions();
@@ -131,27 +147,128 @@ class WineController extends Controller
         $filter = [
             'level' => $level,
             'occasion' => $occasion,
+            'course' => $course,
+            'food' => $food,
             'color' => $color,
+            'strength' => $strength,
             'acidity' => $acidity,
+            'tannin' => $tannin,
             'maturation' => $maturation,
         ];
 
-        if (count(array_filter($filter)) === 5) {
-            $wines = Wine::query();
-            $wines = $wines->limit(5)->get();
+        if ($level ?? false) {
+            $wineQuery = Wine::query();
+            switch ($level) {
+                case 'amateur':
+                    $wineQuery->where('level_sweetness', '>=', 2);
+                    $wineQuery->where('selling_price', '<=', 80);
+                    $wineQuery->where('maturation', 'steel');
+                    break;
+                case 'advanced':
+                    break;
+            }
+            switch ($occasion) {
+                case 'before':
+                    if ($level === 'advanced') {
+                        $wineQuery->where('level_sweetness', '>=', 2);
+                    }
+                    $wineQuery->where('alcohol', '<=', 13.5);
+                    $wineQuery->where('vintage', '>=', Carbon::now()->modify('-3 years')->format('Y'));
+                    $wineQuery->whereHas('category', function ($query) {
+                        return $query->whereIn('name', ['Champagner', 'Schaumwein', 'Roséwein', 'Weißwein']);
+                    });
+                    break;
+                case 'after':
+                    $wineQuery->where('vintage', '<', Carbon::now()->modify('-5 years')->format('Y'));
+                    break;
+            }
+            if ($food) {
+                $theFood = Food::with('styles')->findOrFail($food);
+                $styles = [];
+                $stylesByFood = $theFood->styles->pluck('id')->toArray();
+                if ($color) {
+                    $stylesByColor = match($color) {
+                        'green' => [1, 7, 12],
+                        'yellow' => [2, 8],
+                        'orange' => [3, 9, 11],
+                        'red' => [4],
+                        'plum' => [5, 10],
+                        'purple' => [6],
+                        default => [],
+                    };
+                    $styles = array_intersect($stylesByFood, $stylesByColor);
+                }
+                if ($strength) {
+                    $stylesByStrength = match($strength) {
+                        'light' => [1, 4, 7, 12],
+                        'medium' => [2, 5, 8],
+                        'strong' => [3, 6, 9, 10, 11],
+                        default => [],
+                    };
+                    $styles = array_intersect($stylesByFood, $stylesByStrength);
+                }
+                if (empty($styles)) {
+                    // Fallback!
+                    $styles = $stylesByFood;
+                }
+                #dd($stylesByFood, $stylesByColor ?? null, $stylesByStrength ?? null, $styles ?? null);
+                $wineQuery->whereIn('style_id', $styles);
+            }
+
+            if ($acidity) {
+                $wineQuery->where('level_acidity', (int)$acidity);
+            }
+
+            if ($tannin) {
+                $wineQuery->where('level_tannin', (int)$tannin);
+            }
+
+            if ($maturation) {
+                $wineQuery->where('maturation', $maturation);
+            }
+
+
+            $wineQuery = $wineQuery->with([
+                'category',
+                'city',
+                'region',
+                'country',
+                'winemaker',
+                'grapes',
+            ]);
         }
 
-
         return view('wine.wizard', [
-            'wines' => $wines ?? [],
             'options' => $options,
             'filter' => $filter,
+            'wineQuery' => $wineQuery ?? null,
         ]);
     }
 
     private function loadOptions(): array
     {
-        return __('wizard');
+        // Options are mostly defined in lang/*/wizard.php
+        $options = __('wizard');
+
+        // But the food options come from the database!
+        $food = Food::get()
+            ->sortBy('name')
+            ->map(function($item) {
+                return [
+                    'id' => $item->id,
+                    'title' => $item->name,
+                    'description' => $item->description,
+                    'type' => $item->type
+                ];
+            })
+            ->groupBy('type');
+
+        $options['food_starter']['options'] = $food['starter']->pluck('id')->combine($food['starter'])->toArray();
+        $options['food_maincourse']['options'] = $food['maincourse']->pluck('id')->combine($food['maincourse'])->toArray();
+        $options['food_dessert']['options'] = $food['dessert']->pluck('id')->combine($food['dessert'])->toArray();
+
+        #debug($options);
+        return $options;
     }
 
     /**

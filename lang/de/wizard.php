@@ -35,6 +35,40 @@ return [
             ],
         ],
     ],
+    'course' => [
+        'question' => 'Zu welchem Essen möchten Sie den Wein?',
+        'options' => [
+            'starter' => [
+                'title' => 'Vorspeise',
+                'description' => 'Ein Wein, der leichte Gerichte perfekt ergänzt und den Appetit anregt.',
+            ],
+            'maincourse' => [
+                'title' => 'Hauptspeise',
+                'description' => 'Ein Wein, der mit kräftigen Aromen harmoniert und das Hauptgericht ideal begleitet.'
+            ],
+            'dessert' => [
+                'title' => 'Nachtisch',
+                'description' => 'Ein süffiger Wein, der die süßen Aromen des Desserts wunderbar unterstreicht.',
+            ],
+            'all' => [
+                'title' => 'Passend zu allen Gängen',
+                'description' => 'Ein vielseitiger Wein, der sich nahtlos in jedes Menü einfügt.',
+            ],
+            'independent' => [
+                'title' => 'Unabhängig vom Essen',
+                'description' => 'Ein Wein, der zu jeder Gelegenheit passt und sich flexibel mit verschiedenen Speisen kombinieren lässt.'
+            ],
+        ],
+    ],
+    'food_starter' => [
+        'question' => 'Welche Vorspeise haben Sie gewählt?',
+    ],
+    'food_maincourse' => [
+        'question' => 'Welche Hauptspeise haben Sie gewählt?',
+    ],
+    'food_dessert' => [
+        'question' => 'Welchen Nachtisch haben Sie gewählt?',
+    ],
     'color' => [
         'question' => 'Welche Farbe sagt Ihnen am meisten zu?',
         'options' => [
@@ -64,29 +98,83 @@ return [
             ],
         ],
     ],
-    'acidity' => [
-        'question' => 'Nach was ist Ihnen spontan mehr zumute?',
+    'strength' => [
+        'question' => 'Mögen Sie Ihren Wein eher kräftig oder lieber etwas leichter?',
         'options' => [
-            'lemon' => [
-                'title' => 'Zitrone',
-                'description' => 'Frisch, spritzig und belebend – ein Geschmack, der den Gaumen wachkitzelt.',
+            'light' => [
+                'title' => 'Leicht',
+                'description' => 'Ein frischer, sanfter Wein mit feinen Aromen und einer eleganten Leichtigkeit.',
             ],
-            'melon' => [
-                'title' => 'Melone',
-                'description' => 'Süß, saftig und sommerlich – ein Hauch von Sonne in jedem Bissen.',
+            'medium' => [
+                'title' => 'Mittel',
+                'description' => 'Ein ausgewogener Wein mit harmonischer Fülle und einer angenehmen Tiefe.',
+            ],
+            'strong' => [
+                'title' => 'Stark',
+                'description' => 'Ein kraftvoller Wein mit intensiven Aromen und einem vollmundigen Charakter.',
+            ],
+        ],
+    ],
+    'acidity' => [
+        'question' => 'Säure auf einer Skala von niedrig bis hoch?',
+        'options' => [
+            '1' => [
+                'title' => 'Niedrig',
+                'description' => 'Eins',
+            ],
+            '2' => [
+                'title' => 'Nicht so viel',
+                'description' => 'Zwei',
+            ],
+            '3' => [
+                'title' => 'Mittel',
+                'description' => 'Drei',
+            ],
+            '4' => [
+                'title' => 'Nicht so hoch',
+                'description' => 'Vier',
+            ],
+            '5' => [
+                'title' => 'Hoch',
+                'description' => 'Fünf',
+            ],
+        ],
+    ],
+    'tannin' => [
+        'question' => 'Gerbstoff auf einer Skala von niedrig bis hoch?',
+        'options' => [
+            '1' => [
+                'title' => 'Niedrig',
+                'description' => 'Eins',
+            ],
+            '2' => [
+                'title' => 'Nicht so viel',
+                'description' => 'Zwei',
+            ],
+            '3' => [
+                'title' => 'Mittel',
+                'description' => 'Drei',
+            ],
+            '4' => [
+                'title' => 'Nicht so hoch',
+                'description' => 'Vier',
+            ],
+            '5' => [
+                'title' => 'Hoch',
+                'description' => 'Fünf',
             ],
         ],
     ],
     'maturation' => [
-        'question' => 'Golfplatz oder Dschungel?',
+        'question' => 'Welchen Fassausbau bevorzugen Sie in einem Wein?',
         'options' => [
-            'golfyard' => [
-                'title' => 'Golfplatz',
-                'description' => 'Eleganz und Ruhe in perfekter Harmonie, wo Präzision und Genuss aufeinandertreffen.',
+            'wood' => [
+                'title' => 'Holz',
+                'description' => '...',
             ],
-            'jungle' => [
-                'title' => 'Dschungel',
-                'description' => 'Wilde Ursprünglichkeit voller Abenteuer, wo die Natur den Takt vorgibt.',
+            'steel' => [
+                'title' => 'Stahl',
+                'description' => '...',
             ],
         ],
     ],

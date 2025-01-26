@@ -40,6 +40,7 @@ return [
     */
 
     'debug' => (bool) env('APP_DEBUG', false),
+    'debugWizard' => (bool) env('APP_DEBUG_WIZARD', false),
 
     /*
     |--------------------------------------------------------------------------
