@@ -10,9 +10,9 @@ class FoodImport implements WithMultipleSheets, SkipsUnknownSheets
     public function sheets(): array
     {
         return [
-            2 => new FoodStarterImport(),
-            3 => new FoodMainCourseImport(),
-            4 => new FoodDessertImport(),
+            1 => new FoodStarterImport(),
+            2 => new FoodMainCourseImport(),
+            3 => new FoodDessertImport(),
         ];
     }
 
