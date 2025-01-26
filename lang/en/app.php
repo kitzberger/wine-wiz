@@ -6,6 +6,8 @@ return [
     'nav.wine-list' => 'Wines',
     'nav.about' => 'About',
 
+    'back-to-list' => 'Back to list',
+
     'welcome-to-wine-wiz' => 'Welcome to the Wine Wiz!',
     'who-are-you' => 'Which one are you?',
     'who-are-you.amateur' => 'Amateur',
@@ -56,10 +58,14 @@ return [
     'wine.sweetness' => 'Sweetness',
     'wine.quality' => 'Quality',
     'wine.maturation' => 'Maturation',
+    'wine.maturation.wood' => 'Barrique',
+    'wine.maturation.steel' => 'Steel',
     'wine.tannin' => 'Tannin',
 
     'wine.selling_price' => 'Price',
     'wine.level_sweetness' => 'Sweetness',
+    'wine.level_acidity' => 'Acidity',
+    'wine.level_tannin' => 'Tannin',
 
     'wine.style' => 'Style',
     'wine.style.1' => 'Light, crisp white wines',

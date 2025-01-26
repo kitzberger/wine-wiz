@@ -16,4 +16,9 @@ class Style extends Model
     {
         return $this->belongsToMany(Food::class, 'food_style');
     }
+
+    public function wines(): HasMany
+    {
+        return $this->hasMany(Wine::class);
+    }
 }

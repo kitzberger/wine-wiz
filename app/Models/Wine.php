@@ -63,4 +63,9 @@ class Wine extends Model
     {
         return $this->belongsTo(Country::class);
     }
+
+    public function style(): BelongsTo
+    {
+        return $this->belongsTo(Style::class);
+    }
 }

@@ -6,6 +6,8 @@ return [
     'nav.wine-list' => 'Weine',
     'nav.about' => 'Über',
 
+    'back-to-list' => 'Zurück zur Liste',
+
     'welcome-to-wine-wiz' => 'Willkommen beim Wine Wiz!',
     'who-are-you' => 'Wie gut kennen Sie sich mit Wein aus?',
     'who-are-you.amateur' => 'Laie',
@@ -56,6 +58,8 @@ return [
     'wine.sweetness' => 'Süße',
     'wine.quality' => 'Qualität',
     'wine.maturation' => 'Ausbau',
+    'wine.maturation.wood' => 'Barrique',
+    'wine.maturation.steel' => 'Stahl',
     'wine.tannin' => 'Tannin',
 
     'wine.selling_price' => 'Preis',
