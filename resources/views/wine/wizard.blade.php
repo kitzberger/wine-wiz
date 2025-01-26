@@ -11,23 +11,23 @@
             @if(empty($filter['level']))
                 <x-question name="level" :options="$options" />
             @else
-                <x-decision name="level" :options="$options" :option="$filter['level']" />
+                <x-decision name="level" :options="$options" :option="$filter['level']" :backlink="route('wine.wizard')" />
                 @if(empty($filter['occasion']))
                     <x-question name="occasion" :options="$options" />
                 @else
-                    <x-decision name="occasion" :options="$options" :option="$filter['occasion']" />
+                    <x-decision name="occasion" :options="$options" :option="$filter['occasion']" :backlink="route('wine.wizard', ['level' => $filter['level']])" />
                     @if(empty($filter['color']))
                         <x-question name="color" :options="$options" />
                     @else
-                        <x-decision name="color" :options="$options" :option="$filter['color']" />
+                        <x-decision name="color" :options="$options" :option="$filter['color']" :backlink="route('wine.wizard', ['level' => $filter['level'], 'occasion' => $filter['occasion']])" />
                         @if(empty($filter['acidity']))
                             <x-question name="acidity" :options="$options" />
                         @else
-                            <x-decision name="acidity" :options="$options" :option="$filter['acidity']" />
+                            <x-decision name="acidity" :options="$options" :option="$filter['acidity']" :backlink="route('wine.wizard', ['level' => $filter['level'], 'occasion' => $filter['occasion'], 'color' => $filter['color']])" />
                             @if(empty($filter['maturation']))
                                 <x-question name="maturation" :options="$options" />
                             @else
-                                <x-decision name="maturation" :options="$options" :option="$filter['maturation']" />
+                                <x-decision name="maturation" :options="$options" :option="$filter['maturation']" :backlink="route('wine.wizard', ['level' => $filter['level'], 'occasion' => $filter['occasion'], 'color' => $filter['color'], 'acidity' => $filter['acidity']])"/>
                             @endif
                         @endif
                     @endif
