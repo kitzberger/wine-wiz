@@ -55,7 +55,7 @@
                 </tr>
                 <tr class="">
                     <th class="">{{ __('app.wine.bottle_size' ) }}</th>
-                    <td class="">{{ $wine->bottle_size }}</td>
+                    <td class="">{{ rtrim(number_format($wine->bottle_size, 3, ','), '0') }} l</td>
                 </tr>
                 <tr class="">
                     <th class="">{{ __('app.wine.alcohol') }}</th>
@@ -67,7 +67,7 @@
                 </tr>
                 <tr class="">
                     <th class="">{{ __('app.wine.maturation') }}</th>
-                    <td class="">{{ __('app.wine.maturation.' . $wine->maturation) }}</td>
+                    <td class="">{{ $wine->maturation ? __('app.wine.maturation.' . $wine->maturation) : '' }}</td>
                 </tr>
                 <tr class="">
                     <th class="">{{ __('app.wine.tannin') }}</th>

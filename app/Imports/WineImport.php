@@ -56,7 +56,7 @@ class WineImport implements OnEachRow, WithHeadingRow
             'purchase_price' => $row['einkaufspreis'],
             'vintage' => (int)$row['jahrgang'] ?: null,
             'plu' => $row['plu'],
-            'bottle_size' => (float)$row['gebinde'],
+            'bottle_size' => (float)str_replace(',', '.', $row['gebinde']),
             'alcohol' => (float)$row['alkoholgehalt'],
             'acidity' => (float)$row['saure'],
             'sugar' => (float)$row['susse'],
