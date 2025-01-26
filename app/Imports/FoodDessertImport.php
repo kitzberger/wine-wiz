@@ -29,7 +29,12 @@ class FoodDessertImport implements OnEachRow, WithHeadingRow
         // Save directly so we can add MM relation next
         $food->save();
 
-        foreach (explode(',', $row['weinstil']) as $style) {
+        $styles = $row['weinstil'];
+
+        // Cleanup
+        $styles = str_replace('.', ',', $styles);
+
+        foreach (explode(',', $styles) as $style) {
             $style = (int)$style;
             if ($style) {
                 $food->styles()->attach($style);
