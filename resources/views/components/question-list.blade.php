@@ -20,7 +20,7 @@
                         <button type="submit"
                                 class="btn btn-sm btn-primary"
                                 name="{{ $name }}"
-                                value="{{ $value }}">{{ __('Choose this food') }}</button>
+                                value="{{ $value }}">{{ __('app.choose-this-dish') }}</button>
                     </td>
                 </tr>
             @endforeach

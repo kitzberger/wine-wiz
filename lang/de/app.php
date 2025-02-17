@@ -14,6 +14,8 @@ return [
     'who-are-you.advanced' => 'Fortgeschritten',
     'who-are-you.expert' => 'Experte',
 
+    'choose-this-dish' => 'Diese Speise wählen',
+
     'food-list.no-results' => 'Keine Speisen gefunden ;-(',
     'food-list.x-results' => '1 Speise gefunden.|:count Speisen gefunden.',
 

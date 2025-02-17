@@ -14,6 +14,8 @@ return [
     'who-are-you.advanced' => 'Advanced',
     'who-are-you.expert' => 'Expert',
 
+    'choose-this-dish' => 'Choose this dish',
+
     'food-list.no-results' => 'No foods found ;-(',
     'food-list.x-results' => '1 food found.|:count foods found.',
 
