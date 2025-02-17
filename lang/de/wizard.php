@@ -170,11 +170,11 @@ return [
         'options' => [
             'wood' => [
                 'title' => 'Holz',
-                'description' => '...',
+                'description' => 'Reifungsprozess in Eichenfässern, wodurch der Weinmehr Struktur und dezente Röstaromen bekommt.',
             ],
             'steel' => [
                 'title' => 'Stahl',
-                'description' => '...',
+                'description' => 'Reifungsprozess in Edelstahltanks, wodurch der Wein seine reine, unverfälschte Frische bewahrt.',
             ],
         ],
     ],
