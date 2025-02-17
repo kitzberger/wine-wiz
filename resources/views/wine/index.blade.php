@@ -68,6 +68,15 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="col col-6 col-md-3">
+                    <label for="maturation" class="form-label">{{ count($maturations) }} {{ trans_choice('app.maturations', count($maturations)) }}</label>
+                    <select class="form-select mb-3" name="maturation" id="maturation" class="block" onchange="this.form.submit()" {{ count($maturations) < 2 ? 'disabled' : '' }}>
+                        <x-null-option :count="$maturations->count()" />
+                        @foreach ($maturations as $maturation)
+                            <option value="{{ $maturation }}" {{ $filter['maturation']==$maturation ? 'selected' : '' }}>{{ __('app.wine.maturation.' . $maturation) }}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
         </form>
 

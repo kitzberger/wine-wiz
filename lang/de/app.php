@@ -27,6 +27,7 @@ return [
     'categories' => 'Kategorie|Kategorien',
     'styles' => 'passender Weinstil|passende Weinstile',
     'grapes' => 'Rebsorte|Rebsorten',
+    'maturations' => 'Ausbauart|Ausbauarten',
 
     'food.id' => 'ID',
     'food.name' => 'Speise',

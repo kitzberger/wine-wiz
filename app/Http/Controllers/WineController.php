@@ -28,6 +28,7 @@ class WineController extends Controller
         $category = $request->get('category') ?? null;
         $style = $request->get('style') ?? null;
         $grape = $request->get('grape') ?? null;
+        $maturation = $request->get('maturation') ?? null;
 
         $sortBy = $request->get('sortBy') ?? 'wine';
         $sortByOrder = $request->get('sortByOrder') ?? 'ASC';
@@ -81,6 +82,10 @@ class WineController extends Controller
             });
         }
 
+        if ($maturation) {
+            $wines->where('maturation', $maturation);
+        }
+
         $wines = $wines->with([
             'category',
             'city',
@@ -105,6 +110,7 @@ class WineController extends Controller
             'categories' => Category::all()->sortBy('name'),
             'styles' => collect([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
             'grapes' => Grape::all()->sortBy('name'),
+            'maturations' => collect(['wood', 'steel']),
 
             'filter' => [
                 'country' => $country,
@@ -114,6 +120,7 @@ class WineController extends Controller
                 'category' => $category,
                 'style' => $style,
                 'grape' => $grape,
+                'maturation' => $maturation,
             ],
             'sortBy' => $sortBy,
             'sortByOrder' => $sortByOrder,
