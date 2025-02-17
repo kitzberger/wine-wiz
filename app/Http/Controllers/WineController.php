@@ -195,9 +195,12 @@ class WineController extends Controller
                     break;
             }
             if ($food) {
-                $theFood = Food::with('styles')->findOrFail($food);
-                $styles = [];
-                $stylesByFood = $theFood->styles->pluck('id')->toArray();
+                $styles = $stylesByFood = $stylesByStrength = [];
+
+                $theFood = Food::with('styles')->find($food);
+                if ($theFood) {
+                    $stylesByFood = $theFood->styles->pluck('id')->toArray();
+                }
                 if ($color) {
                     $stylesByColor = match($color) {
                         'green' => [1, 7, 12],
@@ -223,7 +226,7 @@ class WineController extends Controller
                     // Fallback!
                     $styles = $stylesByFood;
                 }
-                #dd($stylesByFood, $stylesByColor ?? null, $stylesByStrength ?? null, $styles ?? null);
+                #debug($stylesByFood, $stylesByColor ?? null, $stylesByStrength ?? null, $styles ?? null);
                 $wineQuery->whereIn('style_id', $styles);
             }
 
@@ -275,9 +278,11 @@ class WineController extends Controller
             })
             ->groupBy('type');
 
-        $options['food_starter']['options'] = $food['starter']->pluck('id')->combine($food['starter'])->toArray();
-        $options['food_maincourse']['options'] = $food['maincourse']->pluck('id')->combine($food['maincourse'])->toArray();
-        $options['food_dessert']['options'] = $food['dessert']->pluck('id')->combine($food['dessert'])->toArray();
+        if (count($food)) {
+            $options['food_starter']['options'] = $food['starter']->pluck('id')->combine($food['starter'])->toArray();
+            $options['food_maincourse']['options'] = $food['maincourse']->pluck('id')->combine($food['maincourse'])->toArray();
+            $options['food_dessert']['options'] = $food['dessert']->pluck('id')->combine($food['dessert'])->toArray();
+        }
 
         #debug($options);
         return $options;
