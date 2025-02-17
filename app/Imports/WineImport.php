@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use App\Imports\GrapeImport;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Country;
@@ -81,11 +82,11 @@ class WineImport implements OnEachRow, WithHeadingRow
         // Save directly so we can add MM relation next
         $wine->save();
 
-        foreach (explode(',', $row['rebsorte']) as $name) {
+        foreach (explode(GrapeImport::SEPARATOR, $row['rebsorte']) as $name) {
             // remove any whitespaces
             $name = trim($name);
-            // remove any percentage from name
-            if (preg_match('/^((\d+)\s*%)?(.+)$/', $name, $matches)) {
+            // split percentage from name
+            if (preg_match('/^(([\d,]+)\s*%)?(.+)$/', $name, $matches)) {
                 $percentage = (int)$matches[1];
                 $name = trim($matches[3]);
                 $grape = Grape::where('name', $name)->first();

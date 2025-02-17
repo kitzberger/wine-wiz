@@ -9,6 +9,8 @@ use Maatwebsite\Excel\Concerns\WithUpserts;
 
 class GrapeImport implements ToModel, WithUpserts, WithHeadingRow
 {
+    public const SEPARATOR = ';';
+
     /**
      * @return string|array
      */
@@ -30,11 +32,11 @@ class GrapeImport implements ToModel, WithUpserts, WithHeadingRow
 
         $grapes = [];
 
-        foreach (explode(',', $row['rebsorte']) as $grape) {
+        foreach (explode(self::SEPARATOR, $row['rebsorte']) as $grape) {
             // remove any whitespaces
             $name = trim($grape);
             // remove any percentage from name
-            $name = preg_replace('/(\d+)\s*%/', '', $name);
+            $name = preg_replace('/([\d,]+)\s*%/', '', $name);
 
             $name = mb_trim($name);
 
