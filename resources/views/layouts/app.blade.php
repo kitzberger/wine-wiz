@@ -13,7 +13,18 @@
         <!-- Scripts -->
         @vite(['resources/scss/app.scss', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
+    @php
+        $image = config('app.background');
+        if ($image && file_exists(public_path($image))) {
+            $backgroundCss = 'background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(250, 0, 0, 0.2)), url(' . asset($image) . ');';
+            $backgroundCss .= 'background-size: cover; background-attachment: fixed;';
+            $backgroundCssOverlay = 'height: 100%; width: 100%; background-color: white; opacity: 0.5; z-index: -1; position: fixed;';
+        } else {
+            $backgroundCss = $backgroundCssOverlay = '';
+        }
+    @endphp
+    <body class="font-sans antialiased" style="{{ $backgroundCss }}">
+        <div style="{{ $backgroundCssOverlay }}"></div>
         <!-- Page Heading -->
         @isset($header)
             <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
