@@ -13,6 +13,7 @@ use App\Models\Winemaker;
 use Carbon\Carbon;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class WineController extends Controller
 {
@@ -131,6 +132,10 @@ class WineController extends Controller
     {
         // Question 1
         $level = $request->get('level') ?? null;
+
+        if ($level === 'expert') {
+            return Redirect::route('wine.index');
+        }
 
         // Question 2
         $occasion = $request->get('occasion') ?? null;
