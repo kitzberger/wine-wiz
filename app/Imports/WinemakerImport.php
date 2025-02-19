@@ -33,6 +33,7 @@ class WinemakerImport implements ToModel, WithUpserts, WithHeadingRow
 
         return new Winemaker([
             'name' => trim($row['winzer']),
+            'info' => trim($row['winzer_infos']),
             'country_id' => $country->id,
         ]);
     }

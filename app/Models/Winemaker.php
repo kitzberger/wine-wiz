@@ -9,6 +9,7 @@ class Winemaker extends Model
 {
     protected $fillable = [
         'name',
+        'info',
         'country_id',
     ];
 
@@ -20,5 +21,10 @@ class Winemaker extends Model
     public function countries(): HasMany
     {
         return $this->belongsToMany(Country::class);
+    }
+
+    public function getImageAttribute(): ?string
+    {
+        return null;
     }
 }

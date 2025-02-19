@@ -88,6 +88,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->string('name');
+            $table->text('info')->nullable();
 
             $table->unsignedBigInteger('country_id');
             $table->foreign('country_id')->references('id')->on('countries');

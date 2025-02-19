@@ -6,6 +6,7 @@ return [
     'nav.wine-list' => 'Wines',
     'nav.about' => 'About',
 
+    'back' => 'Back',
     'back-to-list' => 'Back to list',
 
     'welcome-to-wine-wiz' => 'Welcome to the Wine Wiz!',
@@ -21,6 +22,9 @@ return [
 
     'wine-list.no-results' => 'No wines found ;-(',
     'wine-list.x-results' => '1 wine found.|:count wines found.',
+
+    'winemaker-list.no-results' => 'No winemakers found ;-(',
+    'winemaker-list.x-results' => '1 winemaker found.|:count winemakers found.',
 
     'countries' => 'country|countries',
     'regions' => 'region|regions',
@@ -82,6 +86,9 @@ return [
     'wine.style.10' => 'Sweet wine: red',
     'wine.style.11' => 'Sweet wine: white',
     'wine.style.12' => 'Non-alcoholic',
+
+    'winemaker.name' => 'Name',
+    'winemaker.info' => 'Info',
 
     'marketing_headline' => 'About Wine Wiz',
     'marketing' => 'Our web application helps you find the perfect wine for any occasion – personalized and hassle-free. With just a few clicks, you can share your preferences, whether you\'re looking for a refreshing wine, a meal companion, or a refined choice to end the day. Select flavor profiles like citrus or melon, indicate your level of wine knowledge, and receive tailored recommendations. Whether the wine is for yourself or a gift, our platform takes your needs and occasions into account. With a user-friendly interface and a wide selection of wines, you\'ll quickly discover what suits you best. Additional details about wineries, grape varieties, and reviews make your decision even easier. Enjoy on-demand wine advice – personalized, informative, and designed just for you.',

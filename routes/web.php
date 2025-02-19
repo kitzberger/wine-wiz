@@ -3,6 +3,7 @@
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WineController;
+use App\Http\Controllers\WinemakerController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -16,6 +17,8 @@ Route::get('/food/{food}', [FoodController::class, 'show'])->name('food.show');
 Route::get('/wine-list', [WineController::class, 'index'])->name('wine.index');
 Route::get('/wine/{wine}', [WineController::class, 'show'])->name('wine.show');
 Route::get('/wizard', [WineController::class, 'wizard'])->name('wine.wizard');
+Route::get('/winemaker-list', [WinemakerController::class, 'index'])->name('winemaker.index');
+Route::get('/winemaker/{winemaker}', [WinemakerController::class, 'show'])->name('winemaker.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

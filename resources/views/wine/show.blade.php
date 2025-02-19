@@ -18,7 +18,13 @@
                 </tr>
                 <tr class="">
                     <th class="">{{ __('app.wine.winemaker') }}</th>
-                    <td class="">{{ $wine->winemaker?->name }}</td>
+                    <td class="">
+                        @if($wine->winemaker)
+                            <a href="{{ route('winemaker.show', ['winemaker' => $wine->winemaker->id ]) }}">
+                                {{ $wine->winemaker->name }}
+                            </a>
+                        @endif
+                    </td>
                 </tr>
                 <tr class="">
                     <th class="">{{ __('app.wine.location') }}</th>

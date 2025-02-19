@@ -114,7 +114,13 @@
                             <tr>
                                 <td>{{ $wine->category->name }}</td>
                                 <td>{{ $wine->name }}</td>
-                                <td>{{ $wine->winemaker?->name }}</td>
+                                <td>
+                                    @if($wine->winemaker)
+                                        <a href="{{ route('winemaker.show', ['winemaker' => $wine->winemaker->id ]) }}">
+                                            {{ $wine->winemaker->name }}
+                                        </a>
+                                    @endif
+                                </td>
                                 <td>{{ $wine->city?->name }}</td>
                                 <td>{{ $wine->region?->name }}</td>
                                 <td>{{ $wine->country?->name }}</td>

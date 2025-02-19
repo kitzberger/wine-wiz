@@ -6,6 +6,7 @@ return [
     'nav.wine-list' => 'Weine',
     'nav.about' => 'Über',
 
+    'back' => 'Zurück',
     'back-to-list' => 'Zurück zur Liste',
 
     'welcome-to-wine-wiz' => 'Willkommen beim Wine Wiz!',
@@ -21,6 +22,9 @@ return [
 
     'wine-list.no-results' => 'Keine Weine gefunden ;-(',
     'wine-list.x-results' => '1 Wein gefunden.|:count Weine gefunden.',
+
+    'winemaker-list.no-results' => 'Keine Winzer gefunden ;-(',
+    'winemaker-list.x-results' => '1 Winzer gefunden.|:count Winzer gefunden.',
 
     'countries' => 'Land|Länder',
     'regions' => 'Region|Regionen',
@@ -83,6 +87,9 @@ return [
     'wine.style.10' => 'Süßwein: rot',
     'wine.style.11' => 'Süßwein: weiß',
     'wine.style.12' => 'Alkoholfrei',
+
+    'winemaker.name' => 'Name',
+    'winemaker.info' => 'Infos',
 
     'marketing_headline' => 'Über Wine Wiz',
     'marketing' => 'Unsere Webanwendung hilft Ihnen dabei, den perfekten Wein für jede Gelegenheit zu finden – individuell und unkompliziert. Mit ein paar Klicks können Sie Ihre Vorlieben angeben, ob Sie einen spritzigen Wein zur Erfrischung, einen Begleiter zum Essen oder einen edlen Tropfen für den Ausklang suchen. Wähle aus Geschmacksmustern wie Zitrone oder Melone, gib an, wie gut Sie sich mit Wein auskennen, und lassen Sie sich von personalisierten Empfehlungen inspirieren. Dank einer benutzerfreundlichen Oberfläche und einer breiten Auswahl an Weinen finden Sie schnell, was zu Ihnen passt. Zusätzliche Infos zu Weingütern, Rebsorten und Bewertungen machen Ihre Entscheidung noch einfacher. Genießen Sie Weinberatung auf Knopfdruck – individuell, informativ und direkt auf sich zugeschnitten.',
