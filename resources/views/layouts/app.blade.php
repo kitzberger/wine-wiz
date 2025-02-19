@@ -59,7 +59,7 @@
                             </li>
                         </ul>
                     </div>
-                    <span class="text-muted">v0.9.1</span>
+                    <span class="text-muted">v0.9.2</span>
                 </div>
             </nav>
         @endisset
