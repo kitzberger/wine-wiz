@@ -256,7 +256,8 @@ class WineController extends Controller
         return view('wine.wizard', [
             'options' => $options,
             'filter' => $filter,
-            'wineQuery' => $wineQuery ?? null,
+            'wines' => ($wineQuery ?? false) ? $wineQuery->get() : collect([]),
+            'wineQuerySQL' => ($wineQuery ?? false) ? \Str::replaceArray('?', $wineQuery->getBindings(), $wineQuery->toSql()) : '',
         ]);
     }
 

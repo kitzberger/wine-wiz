@@ -23,6 +23,9 @@ return [
     'wine-list.no-results' => 'Keine Weine gefunden ;-(',
     'wine-list.x-results' => '1 Wein gefunden.|:count Weine gefunden.',
 
+    'wine-wizard.please-start' => 'Bitte obige Fragen beantworten, um den zu Ihnen passenden Wein zu finden.',
+    'wine-wizard.go-on' => 'Bitte weitere Fragen beantworten, um die Weine weiter einzuschränken.',
+
     'winemaker-list.no-results' => 'Keine Winzer gefunden ;-(',
     'winemaker-list.x-results' => '1 Winzer gefunden.|:count Winzer gefunden.',
 

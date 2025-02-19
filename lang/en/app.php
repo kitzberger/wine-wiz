@@ -23,6 +23,9 @@ return [
     'wine-list.no-results' => 'No wines found ;-(',
     'wine-list.x-results' => '1 wine found.|:count wines found.',
 
+    'wine-wizard.please-start' => 'Please answer to questions above to find the perfect wine match for you.',
+    'wine-wizard.go-on' => 'Please answer more questions to further narrow down the wines.',
+
     'winemaker-list.no-results' => 'No winemakers found ;-(',
     'winemaker-list.x-results' => '1 winemaker found.|:count winemakers found.',
 
